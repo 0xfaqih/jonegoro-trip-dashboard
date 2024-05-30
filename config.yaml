@@ -1,0 +1,347 @@
+# port: 6550
+# socks-port: 6551
+# mixed-port: 6552
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+allow-lan: true
+bind-address: "*"
+log-level: warning
+unified-delay: true
+geodata-mode: true
+geodata-loader: memconservative
+ipv6: false
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: /data/adb/box/clash/dashboard
+profile:
+  store-selected: true
+  store-fake-ip: false
+find-process-mode: off
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/raw/release/geoip-lite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/raw/release/country-lite.mmdb"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: false
+  override-destination: false
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+  sniffing: [tls, http]
+  port-whitelist: [80, 443]
+dns:
+  enable: true
+  prefer-h3: false
+  ipv6: false
+  default-nameserver:
+    - '8.8.8.8#match'
+    - 1.1.1.1
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - "*.lan"
+    - "*.ntp.*"
+  nameserver:
+    - 1.1.1.1
+    - '8.8.8.8#match'
+  proxy-server-nameserver:
+    - 112.215.203.246
+    - 112.215.203.247
+    - 112.215.203.248
+    - 112.215.203.254
+    - 112.215.198.248
+    - 112.215.198.254
+    # - "[2400:9800:2:2::246]"
+  # nameserver-policy:
+    # "geosite:category-ads-all": rcode://success
+    # "geosite:nameserver-policy":
+       # - 112.215.198.248
+       # - '[2404:c0:1000::a:0:1]'
+  use-hosts: true
+tun:
+  enable: false
+  mtu: 9000
+  device: tun9
+  stack: system
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  strict-route: false
+  auto-detect-interface: true
+  include-android-user: [0, 10]
+  exclude-package: []
+proxies:
+- name: vmess-ws-1
+  server: 104.16.157.36
+  port: 443
+  type: vmess
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vmess.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vmess-ws
+    headers:
+      Host: vip13-vmess.globalssh.com
+  udp: true
+- name: vless-ws-1
+  server: 104.18.62.204
+  port: 443
+  type: vless
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vless.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vless-ws
+    headers:
+      Host: vip13-vless.globalssh.com
+  udp: true
+- name: trojan-grpc-1
+  server: 104.18.62.203
+  port: 443
+  type: trojan
+  password: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  skip-cert-verify: true
+  sni: vip13-trojan.globalssh.com
+  network: grpc
+  grpc-opts:
+    grpc-service-name: trojan-grpc
+  udp: true
+- name: vmess-ws-2
+  server: 104.18.62.201
+  port: 443
+  type: vmess
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vmess.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vmess-ws
+    headers:
+      Host: vip13-vmess.globalssh.com
+  udp: true
+- name: vless-ws-2
+  server: 104.18.56.55
+  port: 443
+  type: vless
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vless.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vless-ws
+    headers:
+      Host: vip13-vless.globalssh.com
+  udp: true
+- name: trojan-grpc-2
+  server: 104.18.56.56
+  port: 443
+  type: trojan
+  password: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  skip-cert-verify: true
+  sni: vip13-trojan.globalssh.com
+  network: grpc
+  grpc-opts:
+    grpc-service-name: trojan-grpc
+  udp: true
+- name: vmess-ws-3
+  server: 104.18.56.58
+  port: 443
+  type: vmess
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vmess.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vmess-ws
+    headers:
+      Host: vip13-vmess.globalssh.com
+  udp: true
+- name: vless-ws-3
+  server: 104.18.56.30
+  port: 443
+  type: vless
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vless.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vless-ws
+    headers:
+      Host: vip13-vless.globalssh.com
+  udp: true
+- name: trojan-grpc-3
+  server: 104.18.62.229
+  port: 443
+  type: trojan
+  password: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  skip-cert-verify: true
+  sni: vip13-trojan.globalssh.com
+  network: grpc
+  grpc-opts:
+    grpc-service-name: trojan-grpc
+  udp: true
+- name: vmess-ws-4
+  server: 162.159.140.158
+  port: 443
+  type: vmess
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vmess.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vmess-ws
+    headers:
+      Host: vip13-vmess.globalssh.com
+  udp: true
+- name: vless-ws
+  server: 104.16.157.36
+  port: 443
+  type: vless
+  uuid: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: vip13-vless.globalssh.com
+  network: ws
+  ws-opts:
+    path: /vless-ws
+    headers:
+      Host: vip13-vless.globalssh.com
+  udp: true
+- name: trojan-grpc
+  server: alatku.info
+  port: 443
+  type: trojan
+  password: 479a2dbf-dcde-4b27-aeac-db2d23b41ec4
+  skip-cert-verify: true
+  sni: vip13-trojan.globalssh.com
+  network: grpc
+  grpc-opts:
+    grpc-service-name: trojan-grpc
+  udp: true
+- name: RS US_vmess_4834
+  server: alatku.info
+  port: 443
+  type: vmess
+  uuid: 4da7bf72-15e6-47df-bdb1-d419d798e5fd
+  alterId: 0
+  cipher: auto
+  tls: true
+  servername: vmess-rs-us01.globalssh.xyz
+  skip-cert-verify: true
+  udp: true
+  network: ws
+  ws-opts:
+    path: /vmess-ws
+    headers:
+      Host: vmess-rs-us01.globalssh.xyz
+- name: WH ID_vmess_1670
+  server: alatku.info
+  port: 443
+  type: vmess
+  uuid: ca454224-b19c-4013-989a-742bf4c18eec
+  alterId: 0
+  cipher: auto
+  tls: true
+  servername: vmess-wh-id01.globalssh.xyz
+  skip-cert-verify: true
+  udp: true
+  network: ws
+  ws-opts:
+    path: /vmess-ws
+    headers:
+      Host: vmess-wh-id01.globalssh.xyz
+- name: IKD ID_vmess_3309
+  server: alatku.info
+  port: 443
+  type: vmess
+  uuid: aa80c0e0-7ea9-4b70-9b10-dd607f23bd22
+  alterId: 0
+  cipher: auto
+  tls: true
+  servername: vmess-ikd-id01.globalssh.xyz
+  skip-cert-verify: true
+  udp: true
+  network: ws
+  ws-opts:
+    path: /vmess-ws
+    headers:
+      Host: vmess-ikd-id01.globalssh.xyz
+proxy-groups:
+- name: match
+  type: select
+  proxies:
+    - urltest
+    - loadbalance
+    - fallback
+    - vmess-ws
+    - vless-ws
+    - trojan-grpc
+    - RS US_vmess_4834
+    - WH ID_vmess_1670
+    - IKD ID_vmess_3309
+- name: urltest
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  proxies:
+    - vmess-ws
+    - vless-ws
+    - trojan-grpc
+    - RS US_vmess_4834
+    - WH ID_vmess_1670
+    - IKD ID_vmess_3309
+- name: loadbalance
+  type: load-balance
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  # strategy: consistent-hashing # 可选 round-robin 和 sticky-sessions
+  proxies:
+    - vmess-ws
+    - vless-ws
+    - trojan-grpc
+- name: fallback
+  type: fallback
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  proxies:
+    - vmess-ws
+    - vless-ws
+    - trojan-grpc
+rules:
+# - DOMAIN-SUFFIX,googlesyndication.com,match
+# - DOMAIN-SUFFIX,adtival.network,match
+# - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+# - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+# - IP-CIDR6,::1/128,REJECT,no-resolve
+# - GEOSITE,category-ads-all,REJECT
+# - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+- MATCH,match
