@@ -1,10 +1,11 @@
 "use client"
-
 import { DataTable } from './data-table';
 import { columns } from './column';
 import { Tour } from './types';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/components/ui/use-toast';
+import { useTour } from '@/contexts/tourContext';
 
 export async function getData(): Promise<Tour[]> {
   // Fetch data from your API here.
@@ -23,28 +24,37 @@ export async function getData(): Promise<Tour[]> {
 }
 
 export default function TourList() {
-  const [data, setData] = useState<Tour[]>([]);
+  const { tours, setTours } = useTour();
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  const { toast } = useToast();
 
   useEffect(() => {
-    getData().then(setData);
-  }, []);
+    getData().then(fetchedData => {
+      setTours(fetchedData);
+      setIsLoading(false);
+    });
+  }, [setTours]);
 
   const handleDelete = async (id: number) => {
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tours/${id}`, {
       method: 'DELETE',
     });
-    setData(data.filter(tour => tour.id !== id));
+    setTours(tours.filter(tour => tour.id !== id));
+    toast({
+      variant: "success",
+      title: 'Success',
+      description: `Berhasil menghapus wisata`,
+    });
   };
 
   const handleEdit = (tour: Tour) => {
-    // Redirect to the edit page
     router.push(`/tour/edit/${tour.id}`);
   };
 
   return (
-    <div className="container mx-auto py-10 ml-2 w-full">
-      <DataTable columns={columns(handleEdit, handleDelete)} data={data} />
+    <div className="container mx-auto w-full flex-1">
+      <DataTable columns={columns(handleEdit, handleDelete)} data={tours} isLoading={isLoading} />
     </div>
   );
 }

@@ -1,15 +1,28 @@
 import { SidebarNav } from "@/types/SidebarNav";
-import { Icons } from "../icons";
 
 export const SidebarNavs: SidebarNav[] = [
   {
     id: 1,
-    value: "Wisata",
-    href: "/tour",
+    value: "Beranda",
+    href: "/",
+    icon: "home"
   },
   {
     id: 2,
-    value: "Info",
+    value: "Wisata",
+    href: "/tour",
+    icon: "tour"
+  },
+  {
+    id: 3,
+    value: "Informasi",
     href: "/info",
+    icon: "info"
+  },
+  {
+    id: 4,
+    value: "Oleh - Oleh",
+    href: "/sovenir",
+    icon: "sovenir"
   }
 ];

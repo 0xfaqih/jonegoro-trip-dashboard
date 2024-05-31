@@ -1,12 +1,12 @@
 "use client"
- 
+
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table"
- 
+
 import {
   Table,
   TableBody,
@@ -15,31 +15,34 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
- 
+import { Skeleton } from "@/components/ui/skeleton"
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  data: TData[];
+  isLoading?: boolean;
 }
- 
+
 export function DataTable<TData, TValue>({
   columns,
   data,
+  isLoading
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
- 
+
   return (
     <div className="rounded-md border">
-      <Table>
-        <TableHeader>
+      <Table className="">
+        <TableHeader className="sticky top-0">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="sticky top-0 bg-white bg-opacity-50 backdrop-blur-sm z-10">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -53,7 +56,15 @@ export function DataTable<TData, TValue>({
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+        {isLoading ? (
+            [...Array(7)].map((_, index) => (
+              <TableRow key={index}>
+                <TableCell colSpan={columns.length}>
+                  <Skeleton className="h-10 w-full"/>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
@@ -69,7 +80,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                Tidak ada data.
               </TableCell>
             </TableRow>
           )}

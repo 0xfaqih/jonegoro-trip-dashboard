@@ -1,24 +1,29 @@
 "use client";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { FC } from "react";
+import { Icons } from "@/components/icons";
 
 interface SidebarNavProps {
   value: string;
   href: string;
   id: number;
+  icon?: keyof typeof Icons;
 }
 
-const SidebarNav: FC<SidebarNavProps> = ({ value, href }) => {
+const SidebarNav: FC<SidebarNavProps> = ({ value, href, icon }) => {
   const route: string = usePathname();
+  const isActive = route === href; // Check if current route matches href
+
   return (
-    <div className="mb-2">
-      <Link href={href} className="text-black font-medium">
+    <div className={`mb-2 relative ${isActive ? 'bg-black text-white rounded-md' : 'text-black border-b'}`}>
+      <Link href={href} className={`p-2 font-medium flex items-center ${isActive ? 'text-highlight' : ''}`}>
+        {icon && React.createElement(Icons[icon], { size: 16, className: "mr-2" })}
         {value}
       </Link>
       <div
         className="bg-primaryColor absolute w-full h-1 top-[62px]"
-        style={href === route ? { display: "flex" } : { display: "none" }}
+        style={isActive ? { display: "flex" } : { display: "none" }}
       />
     </div>
   );
