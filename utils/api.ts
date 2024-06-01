@@ -50,3 +50,24 @@ export const addImageToAPI = async (tourId: number, imageUrls: string[]) => {
     });
   }));
 };
+
+export const addInfo = async (data: { title: string; banner: string; content: string }) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add info');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to add info', error);
+    throw error;
+  }
+};
