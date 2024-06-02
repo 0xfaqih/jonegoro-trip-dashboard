@@ -1,14 +1,14 @@
 // components/InfoFormFields.tsx
 import React, { ChangeEvent } from "react";
-import { UseFormReturn, FormProvider } from "react-hook-form";
+import { UseFormReturn, FormProvider, Controller } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
-import { 
-  FormField, 
-  FormItem, 
-  FormLabel, 
-  FormControl, 
-  FormMessage 
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage
 } from "@/components/ui/form";
 import { formSchema } from "@/schemas/addInfoFormSchema";
 import dynamic from "next/dynamic";
@@ -54,9 +54,15 @@ export const InfoFormFields: React.FC<InfoFormFieldsProps> = ({ form, handleImag
         name="content"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Content</FormLabel>
+            <FormLabel>Konten</FormLabel>
             <FormControl>
-              <Editor value={field.value} onChange={field.onChange} />
+              <Controller
+                name="content"
+                control={form.control}
+                render={({ field }) => {
+                  return <Editor value={field.value || ''} onChange={field.onChange} />;
+                }}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

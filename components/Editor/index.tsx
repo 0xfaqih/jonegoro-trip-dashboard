@@ -1,6 +1,8 @@
-import React, { useCallback } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 interface EditorProps {
   value: string;
@@ -8,14 +10,14 @@ interface EditorProps {
 }
 
 const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
-  const handleChange = useCallback(
-    (content: string) => {
-      onChange(content);
-    },
-    [onChange]
-  );
+  useEffect(() => {
+    console.log('Editor value:', value);
+  }, [value]);
 
-  return <ReactQuill value={value} onChange={handleChange} />;
+  return (
+    <ReactQuill value={value} onChange={onChange} theme="snow" />
+  );
 };
 
 export default Editor;
+

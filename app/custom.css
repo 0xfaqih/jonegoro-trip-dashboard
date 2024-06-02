@@ -1,0 +1,20 @@
+
+.prose.custom-prose :where(h1):not(:where([class~="not-prose"],[class~="not-prose"] *)),
+.prose.custom-prose :where(h2):not(:where([class~="not-prose"],[class~="not-prose"] *)),
+.prose.custom-prose :where(h3):not(:where([class~="not-prose"],[class~="not-prose"] *)),
+.prose.custom-prose :where(h4):not(:where([class~="not-prose"],[class~="not-prose"] *)),
+.prose.custom-prose :where(h5):not(:where([class~="not-prose"],[class~="not-prose"] *)),
+.prose.custom-prose :where(h6):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    margin-top: 0.1rem; 
+    margin-bottom: 0.2rem; 
+}
+
+.prose.custom-prose p,
+.prose.custom-prose ul,
+.prose.custom-prose ol,
+.prose.custom-prose li 
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
