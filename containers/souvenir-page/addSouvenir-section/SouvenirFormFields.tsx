@@ -9,27 +9,24 @@ import {
   FormControl,
   FormMessage
 } from "@/components/ui/form";
-import { formSchema } from "@/schemas/addInfoFormSchema";
-import dynamic from "next/dynamic";
+import { formSchema } from "@/schemas/addSouvenirFormSchema";
 
-const Editor = dynamic(() => import('@/components/Editor'), { ssr: false });
-
-interface InfoFormFieldsProps {
+interface SouvenirFormFieldsProps {
   form: UseFormReturn<z.infer<typeof formSchema>>;
   handleImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const InfoFormFields: React.FC<InfoFormFieldsProps> = ({ form, handleImageChange }) => {
+export const SouvenirFormFields: React.FC<SouvenirFormFieldsProps> = ({ form, handleImageChange }) => {
   return (
     <FormProvider {...form}>
       <FormField
         control={form.control}
-        name="title"
+        name="name"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Judul</FormLabel>
+            <FormLabel>Nama</FormLabel>
             <FormControl>
-              <Input placeholder="isi judul" {...field} className="" />
+              <Input placeholder="Botok Asli Bojonegoro" {...field} className="" />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -37,31 +34,25 @@ export const InfoFormFields: React.FC<InfoFormFieldsProps> = ({ form, handleImag
       />
       <FormField
         control={form.control}
-        name="banner"
+        name="price"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Banner</FormLabel>
+            <FormLabel>Harga</FormLabel>
+            <FormControl>
+              <Input placeholder="10000" {...field} className="" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="image"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Foto</FormLabel>
             <FormControl>
               <Input type="file" onChange={handleImageChange} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="content"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Konten</FormLabel>
-            <FormControl>
-              <Controller
-                name="content"
-                control={form.control}
-                render={({ field }) => {
-                  return <Editor value={field.value || ''} onChange={field.onChange} />;
-                }}
-              />
             </FormControl>
             <FormMessage />
           </FormItem>

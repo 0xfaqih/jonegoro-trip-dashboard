@@ -22,7 +22,7 @@ export const SidebarNavs: SidebarNav[] = [
   {
     id: 4,
     value: "Oleh - Oleh",
-    href: "/sovenir",
+    href: "/souvenir",
     icon: "sovenir"
   }
 ];
