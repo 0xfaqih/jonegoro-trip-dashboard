@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from '@/schemas/addInfoFormSchema';
 import { useUploadBannerInfo } from '@/hooks/useUploadBannerInfo';
-import { addInfo, updateInfo } from '@/utils/api';
+import { addInfo as addInfoToAPI, updateInfo } from '@/utils/api';
 import { InfoFormFields } from './InfoFormFields';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import { useEditInfo } from '@/contexts/editInfoContext';
+import { useEditInfo } from '@/contexts/infoContext';
 import { z } from 'zod';
 import { PreviewInfo } from '../previewInfo-section';
 
 type FormData = z.infer<typeof formSchema>;
 
 export const AddInfo: React.FC = () => {
-  const { editData, setEditData } = useEditInfo();
+  const { editData, setEditData, addInfo } = useEditInfo();
   const formMethods = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -73,15 +73,18 @@ export const AddInfo: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
+      let newInfo;
       if (isEditing) {
-        await updateInfo({ ...data, id: editData?.id! }); 
+        newInfo = await updateInfo({ ...data, id: editData?.id! });
         toast({
           variant: "success",
           title: "Success",
           description: "Info berhasil diperbarui!",
         });
       } else {
-        await addInfo(data);
+        const response = await addInfoToAPI(data);
+        newInfo = response.data;
+        addInfo(newInfo); 
         toast({
           variant: "success",
           title: "Success",
@@ -98,10 +101,14 @@ export const AddInfo: React.FC = () => {
       });
     }
   };
+  
 
   return (
     <FormProvider {...formMethods}>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+        <h1 className='mb-4 text-2xl font-bold'>
+          {isEditing ? 'Edit Informasi' : 'Buat Informasi'}
+        </h1>
         <InfoFormFields form={formMethods} handleImageChange={handleImageChange} />
         <Button type="submit" disabled={uploading}>
           {uploading ? 'Uploading...' : isEditing ? 'Update' : 'Submit'}
