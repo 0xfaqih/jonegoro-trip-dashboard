@@ -1,6 +1,6 @@
 import { Info } from "@/types/Info";
 import { Souvenir } from "@/types/Souvenir";
-
+import { Accommodation } from "@/types/Accommodation";
 export const getTourData = async (tourId: number) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tours/${tourId}`);
   return response.json();
@@ -214,5 +214,87 @@ export const getSouvenirsById = async (id: number): Promise<Souvenir> => {
   } catch (error) {
     console.log('Error fetching data:', error);
     throw new Error('Failed to fetch data');
+  }
+}
+
+export const addAccommodation = async (data: {name: string; image: string; price: number; location: string; category: string}): Promise<any> => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/accommodations`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add souvenir');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to add souvenir', error);
+    throw error;
+  }
+}
+
+export const getAccommodations = async (): Promise<Accommodation[]> => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/accommodations`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw new Error('Failed to fetch data');
+  }
+}
+
+export const getAccommodationById = async (id: number): Promise<Accommodation> => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/accommodations/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.log('Error fetching data:', error);
+    throw new Error('Failed to fetch data');
+  }
+}
+
+export const deleteAccommodation = async (id: number): Promise<void> => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/accommodations/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete souvenir');
+    }
+  } catch (error) {
+    console.error('Error deleting souvenir:', error);
+    throw new Error('Failed to delete souvenir');
+  }
+}
+
+export const updateAccommodation = async (data: Accommodation): Promise<void> => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/accommodations/${data.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update souvenir');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error updating souvenir:', error);
+    throw new Error('Failed to update souvenir');
   }
 }
