@@ -154,7 +154,7 @@ export const TourFormFields: React.FC<TourFormFieldsProps> = ({ form, handleImag
           control={form.control}
           name="price.motor_park"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="hidden">
               <FormLabel>Harga Parkir Motor</FormLabel>
               <FormControl>
                 <Input type="number" {...field} />
@@ -167,7 +167,7 @@ export const TourFormFields: React.FC<TourFormFieldsProps> = ({ form, handleImag
           control={form.control}
           name="price.car_park"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="hidden">
               <FormLabel>Harga Parkir Mobil</FormLabel>
               <FormControl>
                 <Input type="number" {...field} />

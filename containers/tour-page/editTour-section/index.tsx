@@ -444,7 +444,7 @@ const TourEditForm = () => {
                 control={form.control}
                 name="price.motor_park"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="hidden">
                     <FormLabel>Harga Parkir Motor</FormLabel>
                     <FormControl>
                       <Input type="number" {...field} />
@@ -457,7 +457,7 @@ const TourEditForm = () => {
                 control={form.control}
                 name="price.car_park"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="hidden">
                     <FormLabel>Harga Parkir Mobil</FormLabel>
                     <FormControl>
                       <Input type="number" {...field} />

@@ -30,5 +30,11 @@ export const SidebarNavs: SidebarNav[] = [
     value: "Akomodasi",
     href: "/accommodation",
     icon: "accommodation"
-  }
+  },
+  {
+    id: 6,
+    value: "Logout",
+    href: "#",
+    icon: "sovenir"
+  },
 ];
