@@ -1,4 +1,4 @@
-import { LucideIcon, FerrisWheel, Newspaper, Pencil, Trash2, LayoutDashboard, ShoppingBag, Blocks  } from "lucide-react";
+import { LucideIcon, FerrisWheel, Newspaper, Pencil, Trash2, LayoutDashboard, ShoppingBag, Blocks, LogOut  } from "lucide-react";
 
 export type Icon = LucideIcon;
 
@@ -10,4 +10,5 @@ export const Icons = {
    edit: Pencil,
    delete: Trash2,
    accommodation: Blocks,
+   logout: LogOut
 }

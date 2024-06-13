@@ -35,6 +35,6 @@ export const SidebarNavs: SidebarNav[] = [
     id: 6,
     value: "Logout",
     href: "#",
-    icon: "sovenir"
+    icon: "logout"
   },
 ];
