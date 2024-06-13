@@ -13,7 +13,7 @@ interface SidebarNavProps {
 
 const SidebarNav: FC<SidebarNavProps> = ({ value, href, icon }) => {
   const route: string = usePathname();
-  const isActive = route === href; // Check if current route matches href
+  const isActive = route === href;
 
   return (
     <div className={`mb-2 relative ${isActive ? 'bg-black text-white rounded-md' : 'text-black border-b'}`}>
