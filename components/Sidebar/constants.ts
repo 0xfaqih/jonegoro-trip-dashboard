@@ -33,6 +33,12 @@ export const SidebarNavs: SidebarNav[] = [
   },
   {
     id: 6,
+    value: "Superadmin",
+    href: "/superadmin",
+    icon: "user"
+  },
+  {
+    id: 7,
     value: "Logout",
     href: "#",
     icon: "logout"
