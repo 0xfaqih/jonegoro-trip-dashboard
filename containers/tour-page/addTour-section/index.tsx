@@ -28,12 +28,7 @@ export function AddTour() {
       rating: "4.0",
       desc: "",
       category: "",
-      images: [""],
-      price: {
-        ticket: "10",
-        motor_park: "0",
-        car_park: "0"
-      }
+      images: [""]
     },
   });
 
@@ -45,13 +40,8 @@ export function AddTour() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const ratingValue = parseFloat(values.rating);
-    const priceValues = {
-      ticket: parseFloat(values.price.ticket),
-      motor_park: parseFloat(values.price.motor_park),
-      car_park: parseFloat(values.price.car_park),
-    };
 
-    if (!isNaN(ratingValue) && !Object.values(priceValues).some(isNaN)) {
+    if (!isNaN(ratingValue)) {
       const uploadedImageUrls = await uploadImagesToSupabase(imageFiles);
 
       if (uploadedImageUrls.length > 0) {
@@ -59,7 +49,6 @@ export function AddTour() {
           ...values,
           rating: ratingValue,
           images: uploadedImageUrls,
-          price: priceValues,
         };
 
         try {

@@ -135,48 +135,6 @@ export const TourFormFields: React.FC<TourFormFieldsProps> = ({ form, handleImag
           </FormItem>
         )}
       />
-
-      <div className="price flex gap-2">
-        <FormField
-          control={form.control}
-          name="price.ticket"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Harga Tiket</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="price.motor_park"
-          render={({ field }) => (
-            <FormItem className="hidden">
-              <FormLabel>Harga Parkir Motor</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="price.car_park"
-          render={({ field }) => (
-            <FormItem className="hidden">
-              <FormLabel>Harga Parkir Mobil</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
     </>
   );
 };

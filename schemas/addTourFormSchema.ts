@@ -17,9 +17,4 @@ export const formSchema = z.object({
     required_error: "Category is required",
   }),
   images: z.array(z.string()).nonempty("At least one image is required"),
-  price: z.object({
-    ticket: z.string(),
-    motor_park: z.string(),
-    car_park: z.string()
-  })
 });

@@ -27,12 +27,7 @@ import Loading from "@/components/Loading";
 import { Icons } from "@/components/icons";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const tourCategory = [
-  { label: "Wisata Alam", value: "Alam" },
-  { label: "Wisata Religi", value: "Religi" },
-  { label: "Wisata Buatan", value: "Buatan" },
-  { label: "Wisata Edukasi", value: "Edukasi" },
-] as const;
+import { tourCategory } from "@/constants/tourCategory";
 
 const formSchema = z.object({
   tour_name: z.string().min(2, { message: "tour_name must be at least 2 characters." }),
@@ -41,11 +36,6 @@ const formSchema = z.object({
   desc: z.string().min(10, { message: "Description must be at least 10 characters." }),
   category: z.string({ required_error: "Category is required" }),
   images: z.array(z.string()),
-  price: z.object({
-    ticket: z.string(),
-    motor_park: z.string(),
-    car_park: z.string()
-  })
 });
 
 const TourEditForm = () => {
@@ -67,11 +57,6 @@ const TourEditForm = () => {
       desc: "",
       category: "",
       images: [],
-      price: {
-        ticket: "10",
-        motor_park: "0",
-        car_park: "0"
-      }
     },
   });
 
@@ -84,11 +69,6 @@ const TourEditForm = () => {
             ...tourData,
             rating: tourData.rating.toString(),
             images: tourData.images.map((img: any) => img.url),
-            price: {
-              ticket: tourData.price.ticket.toString(),
-              motor_park: tourData.price.motor_park.toString(),
-              car_park: tourData.price.car_park.toString()
-            }
           });
           setImageUrls(tourData.images.map((img: any) => img.url));
           setIsLoaded(true);
@@ -186,13 +166,8 @@ const TourEditForm = () => {
     setIsLoading(true);
 
     const ratingValue = parseFloat(values.rating);
-    const priceValues = {
-      ticket: parseFloat(values.price.ticket),
-      motor_park: parseFloat(values.price.motor_park),
-      car_park: parseFloat(values.price.car_park)
-    };
 
-    if (!isNaN(ratingValue) && !Object.values(priceValues).some(isNaN)) {
+    if (!isNaN(ratingValue)) {
       let uploadedImageUrls: string[] = [];
 
       if (imageFiles.length > 0) {
@@ -204,7 +179,6 @@ const TourEditForm = () => {
         ...values,
         rating: ratingValue,
         images: existingImages,
-        price: priceValues,
       };
 
       try {
@@ -243,7 +217,7 @@ const TourEditForm = () => {
       toast({
         variant: "destructive",
         title: 'Failed',
-        description: 'Invalid values. Please enter valid numbers for rating and price fields.',
+        description: 'Invalid values. Please enter valid numbers for rating field.',
       });
       setIsLoading(false);
     }
@@ -280,20 +254,6 @@ const TourEditForm = () => {
           </div>
           <Skeleton className="w-40 h-5 mb-2" />
           <Skeleton className="w-full h-32 mb-2" />
-          <div className="flex gap-2 mb-2">
-            <div className="flex flex-col">
-              <Skeleton className="w-52 h-5 mb-2" />
-              <Skeleton className="w-52 h-10" />
-            </div>
-            <div className="flex flex-col">
-              <Skeleton className="w-52 h-5 mb-2" />
-              <Skeleton className="w-52 h-10" />
-            </div>
-            <div className="flex flex-col">
-              <Skeleton className="w-52 h-5 mb-2" />
-              <Skeleton className="w-52 h-10" />
-            </div>
-          </div>
           <Skeleton className="w-24 h-11" />
         </div>
       ) : (
@@ -425,48 +385,6 @@ const TourEditForm = () => {
                 </FormItem>
               )}
             />
-
-            <div className="price flex gap-2">
-              <FormField
-                control={form.control}
-                name="price.ticket"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Harga Tiket</FormLabel>
-                    <FormControl>
-                      <Input type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="price.motor_park"
-                render={({ field }) => (
-                  <FormItem className="hidden">
-                    <FormLabel>Harga Parkir Motor</FormLabel>
-                    <FormControl>
-                      <Input type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="price.car_park"
-                render={({ field }) => (
-                  <FormItem className="hidden">
-                    <FormLabel>Harga Parkir Mobil</FormLabel>
-                    <FormControl>
-                      <Input type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
 
             <Loading isLoading={isLoading} />
 
