@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSouvenir } from '@/contexts/souvenirContext';
 import { useToast } from '@/components/ui/use-toast';
 import { deleteSouvenir, getSouvenirs, getSouvenirsById } from '@/utils/api';
-import { DataTable } from './data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
 
 export const SouvenirList: React.FC = () => {

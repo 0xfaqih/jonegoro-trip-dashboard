@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { deleteAccommodation, getAccommodationById, getAccommodations } from '@/utils/api';
-import { DataTable } from './data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
 import { useAccommodation } from '@/contexts/accommodationContext';
 

@@ -3,17 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Info } from "@/types/Info";
 import { Icons } from "@/components/icons";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import DeleteConfirmDialog from "@/components/ui/delete-confirm-dialog";
 
 export const columns = (handleEdit: (id: number) => void, handleDelete: (id: number) => void): ColumnDef<Info>[] => [
   {
@@ -33,25 +23,11 @@ export const columns = (handleEdit: (id: number) => void, handleDelete: (id: num
         <button onClick={() => handleEdit(row.original.id)}>
           <Icons.edit size={18} />
         </button>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <button>
-              <Icons.delete size={18} />
-            </button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Konfirmasi Penghapusan</AlertDialogTitle>
-              <AlertDialogDescription>
-                Apakah Anda yakin ingin menghapus info <span className="font-bold">{row.original.title}</span>?
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Batal</AlertDialogCancel>
-              <AlertDialogAction onClick={() => handleDelete(row.original.id)}>Hapus</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <DeleteConfirmDialog
+          title="Konfirmasi Penghapusan"
+          description={`Apakah Anda yakin ingin menghapus informasi ${row.original.title}?`}
+          onConfirm={() => handleDelete(row.original.id)}
+        />
       </div>
     ),
   },

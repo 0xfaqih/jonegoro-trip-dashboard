@@ -93,7 +93,7 @@ export const AddAccommodation: React.FC = () => {
         toast({
           variant: "success",
           title: "Success",
-          description: "Oleh - oleh berhasil diperbarui!",
+          description: "Akomodasi berhasil diperbarui!",
         });
       } else {
         const response = await addAccommodationToAPI(data);
@@ -103,7 +103,7 @@ export const AddAccommodation: React.FC = () => {
           toast({
             variant: "success",
             title: "Success",
-            description: "Oleh - oleh berhasil dikirim!",
+            description: "Akomodasi berhasil dikirim!",
           });
         } else {
           console.error("Unexpected response:", response);

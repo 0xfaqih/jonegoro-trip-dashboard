@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useEditInfo } from '@/contexts/infoContext';
 import { useToast } from '@/components/ui/use-toast';
 import { getInfos, deleteInfo, getInfoById } from '@/utils/api';
-import { DataTable } from './data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
 
 const InfoList: React.FC = () => {

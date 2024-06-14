@@ -1,17 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Tour } from "./types";
+import { Tour } from "@/types/Tour";
 import { Icons } from "@/components/icons";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import DeleteConfirmDialog from "@/components/ui/delete-confirm-dialog";
+
 export const columns = (handleEdit: (tour: Tour) => void, handleDelete: (id: number) => void): ColumnDef<Tour>[] => [
   {
     id: "serial_number",
@@ -36,27 +27,13 @@ export const columns = (handleEdit: (tour: Tour) => void, handleDelete: (id: num
     cell: ({ row }) => (
       <div className="flex gap-2">
         <button onClick={() => handleEdit(row.original)}>
-          <Icons.edit size={18}/>
+          <Icons.edit size={18} />
         </button>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <button>
-              <Icons.delete size={18}/>
-            </button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Konfirmasi Penghapusan</AlertDialogTitle>
-              <AlertDialogDescription>
-                Apakah Anda yakin ingin menghapus wisata <span className="font-bold">{row.original.tour_name}</span>?
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Batal</AlertDialogCancel>
-              <AlertDialogAction onClick={() => handleDelete(row.original.id)}>Hapus</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <DeleteConfirmDialog
+          title="Konfirmasi Penghapusan"
+          description={`Apakah Anda yakin ingin menghapus wisata ${row.original.tour_name}?`}
+          onConfirm={() => handleDelete(row.original.id)}
+        />
       </div>
     ),
   },

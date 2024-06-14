@@ -1,17 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Souvenir } from "@/types/Souvenir";
 import { Icons } from "@/components/icons";
-import {
-   AlertDialog,
-   AlertDialogAction,
-   AlertDialogCancel,
-   AlertDialogContent,
-   AlertDialogDescription,
-   AlertDialogFooter,
-   AlertDialogHeader,
-   AlertDialogTitle,
-   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import DeleteConfirmDialog from "@/components/ui/delete-confirm-dialog";
 
 export const columns = (handleEdit: (id: number) => void, handleDelete: (id: number) => void): ColumnDef<Souvenir>[] => [
    {
@@ -32,29 +22,15 @@ export const columns = (handleEdit: (id: number) => void, handleDelete: (id: num
       header: "Aksi",
       cell: ({ row }) => (
          <div className="flex gap-2">
-            <button onClick={() => handleEdit(row.original.id)}>
-               <Icons.edit size={18} />
-            </button>
-            <AlertDialog>
-               <AlertDialogTrigger asChild>
-                  <button>
-                     <Icons.delete size={18} />
-                  </button>
-               </AlertDialogTrigger>
-               <AlertDialogContent>
-                  <AlertDialogHeader>
-                     <AlertDialogTitle>Konfirmasi Penghapusan</AlertDialogTitle>
-                     <AlertDialogDescription>
-                        Apakah Anda yakin ingin menghapus oleh oleh ini <span className="font-bold">{row.original.name}</span>?
-                     </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                     <AlertDialogCancel>Batal</AlertDialogCancel>
-                     <AlertDialogAction onClick={() => handleDelete(row.original.id)}>Hapus</AlertDialogAction>
-                  </AlertDialogFooter>
-               </AlertDialogContent>
-            </AlertDialog>
+           <button onClick={() => handleEdit(row.original.id)}>
+             <Icons.edit size={18} />
+           </button>
+           <DeleteConfirmDialog
+             title="Konfirmasi Penghapusan"
+             description={`Apakah Anda yakin ingin menghapus oleh-oleh ${row.original.name}?`}
+             onConfirm={() => handleDelete(row.original.id)}
+           />
          </div>
-      ),
+       ),
    },
 ];

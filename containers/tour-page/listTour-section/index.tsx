@@ -1,14 +1,13 @@
 "use client"
-import { DataTable } from './data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
-import { Tour } from './types';
+import { Tour } from '@/types/Tour';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
 import { useTour } from '@/contexts/tourContext';
 
 export async function getData(): Promise<Tour[]> {
-  // Fetch data from your API here.
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tours`, {
     next: { revalidate: 10 },
   });

@@ -4,4 +4,3 @@ export type Tour = {
    category: string;
    place: string;
  };
- 
