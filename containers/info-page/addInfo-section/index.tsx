@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
@@ -101,20 +101,21 @@ export const AddInfo: React.FC = () => {
       });
     }
   };
-  
 
   return (
-    <FormProvider {...formMethods}>
-      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <h1 className='mb-4 text-2xl font-bold'>
-          {isEditing ? 'Edit Informasi' : 'Buat Informasi'}
-        </h1>
-        <InfoFormFields form={formMethods} handleImageChange={handleImageChange} />
-        <Button type="submit" disabled={uploading}>
-          {uploading ? 'Uploading...' : isEditing ? 'Update' : 'Submit'}
-        </Button>
-      </form>
-      <PreviewInfo />
-    </FormProvider>
+    <div className="bg-white p-6 rounded-lg shadow-md grid grid-cols-2 mx-auto w-full">
+      <FormProvider {...formMethods}>
+        <form onSubmit={formMethods.handleSubmit(onSubmit)} className="space-y-4 mr-6">
+          <h1 className='text-2xl font-bold text-center mb-6'>
+            {isEditing ? 'Edit Informasi' : 'Buat Informasi'}
+          </h1>
+          <InfoFormFields form={formMethods} handleImageChange={handleImageChange} />
+          <Button type="submit" disabled={uploading} className="w-full">
+            {uploading ? 'Uploading...' : isEditing ? 'Update' : 'Submit'}
+          </Button>
+        </form>
+        <PreviewInfo/>
+      </FormProvider>
+    </div>
   );
-}
+};

@@ -34,34 +34,39 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Login</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mb-4"
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mb-4"
-          />
-          {error && <p className="text-red-500">{error}</p>}
-        </CardContent>
-        <CardFooter>
-          <Button onClick={handleLogin} className="w-full">
-            Login
-          </Button>
-        </CardFooter>
-      </Card>
+    <div className="relative flex items-center justify-center min-h-screen bg-[url('/logo-pinarak.png')] bg-cover bg-center">
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="relative flex items-center justify-center w-full h-full">
+        <div className="backdrop-gradient p-8 rounded-lg shadow-xl max-w-md w-full">
+          <Card className="w-full shadow-none bg-white">
+            <CardHeader>
+              <CardTitle >Login</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mb-4"
+              />
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mb-4"
+              />
+              {error && <p className="text-red-500">{error}</p>}
+            </CardContent>
+            <CardFooter>
+              <Button onClick={handleLogin} className="w-full">
+                Login
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

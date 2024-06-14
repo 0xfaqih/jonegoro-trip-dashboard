@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -258,146 +258,149 @@ const TourEditForm = () => {
           <Skeleton className="w-24 h-11" />
         </div>
       ) : (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="border-solid border p-4 mr-2 w-full rounded-md">
-            <FormField
-              control={form.control}
-              name="tour_name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Nama Wisata</FormLabel>
-                  <FormControl>
-                    <Input placeholder="ex. Kayangan Api" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <div className="bg-white p-6 rounded-lg shadow-md w-full mx-auto">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <h1 className="text-2xl font-bold text-center mb-6">Edit Wisata</h1>
+              <FormField
+                control={form.control}
+                name="tour_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nama Wisata</FormLabel>
+                    <FormControl>
+                      <Input placeholder="ex. Kayangan Api" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <div className="flex gap-2">
-              <FormField
-                control={form.control}
-                name="rating"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Rating</FormLabel>
-                    <FormControl>
-                      <Input type="number" step="0.1" min="0" max="5" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="place"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Lokasi</FormLabel>
-                    <FormControl>
-                      <Input placeholder="London" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="images"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Foto</FormLabel>
-                    <FormControl>
-                      <Input type="file" multiple onChange={handleImageChange} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="category"
-                render={({ field }) => (
-                  <div className="flex flex-col">
-                    <FormLabel className="mt-2 mb-2">Kategori</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          role="combobox"
-                          className="w-[200px] justify-between"
-                        >
-                          {field.value
-                            ? tourCategory.find(category => category.value === field.value)?.label
-                            : 'Pilih kategori'}
-                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-[200px] p-0">
-                        <Command>
-                          <CommandInput placeholder="Search category..." />
-                          <CommandEmpty>No category found.</CommandEmpty>
-                          <CommandGroup>
-                            {tourCategory.map(category => (
-                              <CommandItem
-                                value={category.label}
-                                key={category.value}
-                                onSelect={() => {
-                                  field.onChange(category.value);
-                                }}
-                              >
-                                {category.label}
-                              </CommandItem>
-                            ))}
-                          </CommandGroup>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
+              <div className="flex gap-2">
+                <FormField
+                  control={form.control}
+                  name="rating"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Rating</FormLabel>
+                      <FormControl>
+                        <Input type="number" step="0.1" min="0" max="5" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="place"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Lokasi</FormLabel>
+                      <FormControl>
+                        <Input placeholder="London" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="images"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Foto</FormLabel>
+                      <FormControl>
+                        <Input type="file" multiple onChange={handleImageChange} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <div className="flex flex-col">
+                      <FormLabel className="mt-2 mb-2">Kategori</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className="w-[200px] justify-between"
+                          >
+                            {field.value
+                              ? tourCategory.find(category => category.value === field.value)?.label
+                              : 'Pilih kategori'}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[200px] p-0">
+                          <Command>
+                            <CommandInput placeholder="Search category..." />
+                            <CommandEmpty>No category found.</CommandEmpty>
+                            <CommandGroup>
+                              {tourCategory.map(category => (
+                                <CommandItem
+                                  value={category.label}
+                                  key={category.value}
+                                  onSelect={() => {
+                                    field.onChange(category.value);
+                                  }}
+                                >
+                                  {category.label}
+                                </CommandItem>
+                              ))}
+                            </CommandGroup>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                  )}
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 mb-3">
+                {imageUrls.map((url, index) => (
+                  <div key={index} className="relative ">
+                    <Image
+                      src={url}
+                      alt={`image-${index}`}
+                      className='w-full object-cover rounded'
+                      width={200}
+                      height={100}
+                    />
+                    <button
+                      type="button"
+                      className="absolute text-center top-2 right-2 flex items-center justify-center bg-black text-white p-1 rounded-full w-10 h-10"
+                      onClick={() => removeImage(index)}
+                    >
+                      <Icons.delete />
+                    </button>
                   </div>
+                ))}
+              </div>
+
+              <FormField
+                control={form.control}
+                name="desc"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Deskripsi</FormLabel>
+                    <FormControl>
+                      <Textarea placeholder="deskripsi..." {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
               />
-            </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-3">
-              {imageUrls.map((url, index) => (
-                <div key={index} className="relative ">
-                  <Image
-                    src={url}
-                    alt={`image-${index}`}
-                    className='w-full object-cover rounded'
-                    width={200}
-                    height={100}
-                  />
-                  <button
-                    type="button"
-                    className="absolute text-center top-2 right-2 flex items-center justify-center bg-black text-white p-1 rounded-full w-10 h-10"
-                    onClick={() => removeImage(index)}
-                  >
-                    <Icons.delete />
-                  </button>
-                </div>
-              ))}
-            </div>
+              <Loading isLoading={isLoading} />
 
-            <FormField
-              control={form.control}
-              name="desc"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Deskripsi</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="deskripsi..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Loading isLoading={isLoading} />
-
-            <Button type="submit">Submit</Button>
-          </form>
-        </Form>
+              <Button type="submit" className="w-full">Submit</Button>
+            </form>
+          </Form>
+        </div>
       )}
     </>
   );

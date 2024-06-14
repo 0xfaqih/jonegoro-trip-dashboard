@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect } from 'react';
 import { useEditInfo } from '@/contexts/infoContext';
@@ -60,8 +60,9 @@ const InfoList: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto w-full flex-1">
-      <DataTable columns={columns(handleEdit, handleDelete)} data={infos}/>
+    <div className="bg-white p-6 rounded-lg shadow-md w-full mx-auto">
+      <h1 className="text-2xl font-semibold text-center mb-10">Daftar Informasi</h1>
+      <DataTable columns={columns(handleEdit, handleDelete)} data={infos} />
     </div>
   );
 };

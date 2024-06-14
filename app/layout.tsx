@@ -41,9 +41,9 @@ function MainContent({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className={`flex ${pathname !== "/login" ? "" : "ml-40"}`}>
+    <div className={`flex ${pathname !== "/login" ? "" : ""}`}>
       {pathname !== "/login" && <Sidebar />}
-      <div className="flex-grow p-4 ml-40">
+      <div className={`flex-grow ${pathname !== "/login" ? "ml-40" : ""}`}>
         {children}
       </div>
     </div>

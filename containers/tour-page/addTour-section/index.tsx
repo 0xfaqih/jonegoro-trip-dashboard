@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -97,12 +97,15 @@ export function AddTour() {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="border-solid border p-4 w-full rounded-md flex-1">
-        <TourFormFields form={form} handleImageChange={handleImageChange} />
-        <Loading isLoading={isLoading} />
-        <Button type="submit" className="mt-5">Submit</Button>
-      </form>
-    </Form>
+    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg mx-auto">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <h1 className="text-2xl font-bold text-center mb-6">Tambah Wisata</h1>
+          <TourFormFields form={form} handleImageChange={handleImageChange} />
+          <Loading isLoading={isLoading} />
+          <Button type="submit" className="w-full">Submit</Button>
+        </form>
+      </Form>
+    </div>
   );
 }

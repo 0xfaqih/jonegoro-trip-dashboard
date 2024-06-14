@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
@@ -124,28 +124,30 @@ export const AddAccommodation: React.FC = () => {
     }
   };
 
-
-
   return (
-    <FormProvider {...formMethods}>
-      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <h1 className='mb-4 text-2xl font-bold'>
-          {isEditing ? 'Edit Akomodasi' : 'Tambahkan Akomodasi'}
-        </h1>
-        <AccommodationFormField form={formMethods} handleImageChange={handleImageChange} />
-        {imagePreview && (
-          <Image
-            src={imagePreview}
-            alt={'preview'}
-            className='mb-3'
-            width={400}
-            height={100}
-          />
-        )}
-        <Button type="submit" disabled={uploading}>
-          {uploading ? 'Uploading...' : isEditing ? 'Update' : 'Submit'}
-        </Button>
-      </form>
-    </FormProvider>
+    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg mx-auto">
+      <FormProvider {...formMethods}>
+        <form onSubmit={formMethods.handleSubmit(onSubmit)} className="space-y-4">
+          <h1 className="text-2xl font-bold text-center mb-6">
+            {isEditing ? 'Edit Akomodasi' : 'Tambahkan Akomodasi'}
+          </h1>
+          <AccommodationFormField form={formMethods} handleImageChange={handleImageChange} />
+          {imagePreview && (
+            <div className="flex justify-center mb-3">
+              <Image
+                src={imagePreview}
+                alt={'preview'}
+                className="rounded"
+                width={400}
+                height={100}
+              />
+            </div>
+          )}
+          <Button type="submit" disabled={uploading} className="w-full">
+            {uploading ? 'Uploading...' : isEditing ? 'Update' : 'Submit'}
+          </Button>
+        </form>
+      </FormProvider>
+    </div>
   );
 };

@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
 import { Tour } from '@/types/Tour';
@@ -52,7 +53,8 @@ export default function TourList() {
   };
 
   return (
-    <div className="container mx-auto w-full flex-1">
+    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl mx-auto">
+      <h1 className="text-2xl font-semibold text-center mb-10">Daftar Wisata</h1>
       <DataTable columns={columns(handleEdit, handleDelete)} data={tours} isLoading={isLoading} />
     </div>
   );

@@ -6,8 +6,7 @@ interface EditProps {}
 const Edit: FC<EditProps> = () => {
   return (
     <main className="flex flex-col">
-      <h1 className="mb-4 text-2xl font-bold">Edit Data Wisata</h1>
-      <div className="max-w-[1000px]">
+      <div className="p-6">
         <TourEditForm />
       </div>
     </main>

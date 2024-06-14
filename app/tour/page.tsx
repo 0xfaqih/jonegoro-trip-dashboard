@@ -11,8 +11,7 @@ const Tour: FC<TourProps> = () => {
     <ProtectedRoute>
       <TourProvider>
       <main className="flex flex-col p-6">
-        <h1 className="mb-4 text-2xl font-bold">Input Data Wisata</h1>
-        <div className="flex flex-row-reverse">
+        <div className="flex flex-row-reverse gap-4">
           <TourList />
           <AddTour />
         </div>

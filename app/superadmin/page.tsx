@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { useUserRole } from '@/hooks/useUserRole';
+import Loading from '@/components/Loading';
 
 type User = {
   id: number;
@@ -92,11 +93,11 @@ export default function Home() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading isLoading={isLoading} />;
   }
 
   return (
-    <div className="p-4 max-w-md">
+    <div className="p-6 max-w-md">
       <h1 className="text-2xl font-bold">Tambah admin</h1>
       <form onSubmit={handleAddAdmin} className="space-y-4 mt-4">
         <Input
