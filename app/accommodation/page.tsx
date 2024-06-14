@@ -7,7 +7,7 @@ interface AccommodationProps { }
 const Accommodation: FC<AccommodationProps> = () => {
   return (
       <AccommodationProvider>
-        <main className="flex flex-col">
+        <main className="flex flex-col p-6">
         <div className="grid grid-cols-2 gap-4">
           <AddAccommodation/>
           <AccommodationList/>

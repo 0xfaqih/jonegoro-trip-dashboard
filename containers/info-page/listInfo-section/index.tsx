@@ -61,7 +61,7 @@ const InfoList: React.FC = () => {
 
   return (
     <div className="container mx-auto w-full flex-1">
-      <DataTable columns={columns(handleEdit, handleDelete)} data={infos} />
+      <DataTable columns={columns(handleEdit, handleDelete)} data={infos}/>
     </div>
   );
 };

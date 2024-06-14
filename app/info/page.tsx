@@ -7,11 +7,11 @@ interface InfoProps { }
 const Info: FC<InfoProps> = () => {
   return (
     <InfoProvider>
-      <main className="flex flex-col">
+      <main className="flex flex-col p-6">
         <div className="grid grid-cols-2 gap-4">
           <AddInfo />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <h1 className="m-auto text-xl font-bold my-4 mt-10">Daftar Informasi</h1>
           <InfoList />
         </div>

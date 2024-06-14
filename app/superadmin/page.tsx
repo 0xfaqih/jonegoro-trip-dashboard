@@ -13,7 +13,7 @@ type User = {
   email: string;
 };
 
-export default function Dashboard() {
+export default function Home() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -96,7 +96,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="p-4 max-w-2xl">
+    <div className="p-4 max-w-md">
       <h1 className="text-2xl font-bold">Tambah admin</h1>
       <form onSubmit={handleAddAdmin} className="space-y-4 mt-4">
         <Input

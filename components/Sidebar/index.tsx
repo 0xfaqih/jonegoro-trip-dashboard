@@ -14,7 +14,7 @@ export default function Sidebar() {
   });
 
   return (
-    <nav className="min-w-40 h-screen px-2 py-4 border-solid border-r-2 fixed">
+    <nav className="min-w-40 h-screen px-2 py-4 fixed bg-gradient-to-b from-stone-50 shadow-md">
       {filteredNavs.map((el, _i) => (
         <div key={_i} onClick={el.value === "Logout" ? logout : undefined}>
           <SidebarNav value={el.value} id={el.id} href={el.href} icon={el.icon} />
