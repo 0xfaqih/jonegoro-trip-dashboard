@@ -5,12 +5,13 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from '@/schemas/addAccommodationFormSchema';
 import { useUploadImageSouvenir } from '@/hooks/useUploadImageSouvenir';
-import {addAccommodation as addAccommodationToAPI, updateAccommodation as updateAccommodationToAPI} from '@/utils/api';
+import { addAccommodation as addAccommodationToAPI, updateAccommodation as updateAccommodationToAPI } from '@/utils/api';
 import { AccommodationFormField } from './AccommodationFormFields';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { z } from 'zod';
 import { useAccommodation } from '@/contexts/accommodationContext';
+import Image from 'next/image';
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -133,7 +134,13 @@ export const AddAccommodation: React.FC = () => {
         </h1>
         <AccommodationFormField form={formMethods} handleImageChange={handleImageChange} />
         {imagePreview && (
-          <img src={imagePreview} alt="Preview" className='mb-4' />
+          <Image
+            src={imagePreview}
+            alt={'preview'}
+            className='mb-3'
+            width={400}
+            height={100}
+          />
         )}
         <Button type="submit" disabled={uploading}>
           {uploading ? 'Uploading...' : isEditing ? 'Update' : 'Submit'}

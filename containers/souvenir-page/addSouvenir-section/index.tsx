@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { useSouvenir } from '@/contexts/souvenirContext';
 import { z } from 'zod';
+import Image from 'next/image';
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -129,7 +130,13 @@ export const AddSouvenir: React.FC = () => {
         </h1>
         <SouvenirFormFields form={formMethods} handleImageChange={handleImageChange} />
         {imagePreview && (
-          <img src={imagePreview} alt="Preview" className='mb-4' />
+          <Image
+          src={imagePreview}
+          alt="Preview"
+          className='mb-4'
+          width={400}
+          height={100}
+          />
         )}
         <Button type="submit" disabled={uploading}>
           {uploading ? 'Uploading...' : isEditing ? 'Update' : 'Submit'}

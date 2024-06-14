@@ -28,6 +28,7 @@ import { Icons } from "@/components/icons";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import { tourCategory } from "@/constants/tourCategory";
+import Image from "next/image";
 
 const formSchema = z.object({
   tour_name: z.string().min(2, { message: "tour_name must be at least 2 characters." }),
@@ -360,7 +361,13 @@ const TourEditForm = () => {
             <div className="grid grid-cols-3 gap-4 mb-3">
               {imageUrls.map((url, index) => (
                 <div key={index} className="relative ">
-                  <img src={url} alt={`image-${index}`} className="w-full object-cover rounded" />
+                  <Image
+                    src={url}
+                    alt={`image-${index}`}
+                    className='w-full object-cover rounded'
+                    width={200}
+                    height={100}
+                  />
                   <button
                     type="button"
                     className="absolute text-center top-2 right-2 flex items-center justify-center bg-black text-white p-1 rounded-full w-10 h-10"
