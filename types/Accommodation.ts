@@ -4,6 +4,6 @@ export type Accommodation = {
    image: string;
    location: string;
    category: string;
-   price: number;
+   telephon: string;
  };
  

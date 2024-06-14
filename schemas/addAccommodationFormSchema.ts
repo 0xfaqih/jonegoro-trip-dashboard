@@ -12,13 +12,7 @@ export const formSchema = z.object({
    location: z.string().min(5, {
       message: "Lokasi minimal 4 karakter.",
    }),
-   price: z
-    .preprocess((value) => {
-      if (typeof value === "string") {
-        return parseFloat(value);
-      }
-      return value;
-    }, z.number().min(3, {
-      message: "Harga minimal 3 karakter.",
-    })),
+   telephon: z.string().min(5, {
+      message: "Telepon minimal 5 karakter.",
+   })
 });

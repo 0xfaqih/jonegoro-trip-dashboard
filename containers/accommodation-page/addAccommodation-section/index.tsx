@@ -21,7 +21,7 @@ export const AddAccommodation: React.FC = () => {
     defaultValues: {
       name: '',
       image: '',
-      price: 0,
+      telephon: '',
       location: '',
       category: ''
     }
@@ -76,7 +76,7 @@ export const AddAccommodation: React.FC = () => {
       formMethods.reset({
         name: '',
         image: '',
-        price: 0,
+        telephon: '',
         location: '',
         category: ''
       });

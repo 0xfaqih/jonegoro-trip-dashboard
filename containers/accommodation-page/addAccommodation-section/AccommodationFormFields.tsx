@@ -36,12 +36,12 @@ export const AccommodationFormField: React.FC<AccommodationFormFieldProps> = ({ 
       />
       <FormField
         control={form.control}
-        name="price"
+        name="telephon"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Harga</FormLabel>
+            <FormLabel>Telephon</FormLabel>
             <FormControl>
-              <Input placeholder="10000" {...field} className="" />
+              <Input placeholder="08xxx" {...field} className="" />
             </FormControl>
             <FormMessage />
           </FormItem>

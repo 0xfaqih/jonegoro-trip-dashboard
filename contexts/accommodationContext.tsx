@@ -18,7 +18,7 @@ export const AccommodationProvider: React.FC<{ children: ReactNode }> = ({ child
    const [accommodations, setAccommodations] = useState<any[]>([]);
 
    const addAccommodation = (accommodation: any) => {
-      setAccommodations((prevAccommodations) => [{ id: accommodation.id, name: accommodation.name, price: accommodation.price, image: accommodation.image, location: accommodation.location, category: accommodation.category }, ...prevAccommodations]);
+      setAccommodations((prevAccommodations) => [{ id: accommodation.id, name: accommodation.name, telephon: accommodation.telephon, image: accommodation.image, location: accommodation.location, category: accommodation.category }, ...prevAccommodations]);
     };
    
    const updateAccommodation = (updatedAccommodation: any) => {
