@@ -24,8 +24,8 @@ export const columns = (handleEdit: (id: number) => void, handleDelete: (id: num
       header: "Nama",
    },
    {
-      accessorKey: "price",
-      header: "Harga",
+      accessorKey: "location",
+      header: "Lokasi",
    },
    {
       id: "actions",

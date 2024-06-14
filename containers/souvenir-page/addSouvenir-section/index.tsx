@@ -21,7 +21,7 @@ export const AddSouvenir: React.FC = () => {
     defaultValues: {
       name: '',
       image: '',
-      price: 0,
+      location: ''
     }
   });
 
@@ -74,7 +74,7 @@ export const AddSouvenir: React.FC = () => {
       formMethods.reset({
         name: '',
         image: '',
-        price: 0,
+        location: ''
       });
       setIsEditing(false);
     }

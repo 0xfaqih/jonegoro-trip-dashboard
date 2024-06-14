@@ -34,12 +34,12 @@ export const SouvenirFormFields: React.FC<SouvenirFormFieldsProps> = ({ form, ha
       />
       <FormField
         control={form.control}
-        name="price"
+        name="location"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Harga</FormLabel>
+            <FormLabel>Lokasi</FormLabel>
             <FormControl>
-              <Input placeholder="10000" {...field} className="" />
+              <Input placeholder="lokasi" {...field} className="" />
             </FormControl>
             <FormMessage />
           </FormItem>

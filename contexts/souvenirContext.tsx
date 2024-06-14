@@ -18,7 +18,7 @@ export const SouvenirProvider: React.FC<{ children: ReactNode }> = ({ children }
    const [souvenirs, setSouvenirs] = useState<any[]>([]);
 
    const addSouvenir = (souvenir: any) => {
-      setSouvenirs((prevSouvenirs) => [{ id: souvenir.id, name: souvenir.name, price: souvenir.price }, ...prevSouvenirs]);
+      setSouvenirs((prevSouvenirs) => [{ id: souvenir.id, name: souvenir.name, location: souvenir.location }, ...prevSouvenirs]);
     };
    
    const updateSouvenir = (updatedSouvenir: any) => {

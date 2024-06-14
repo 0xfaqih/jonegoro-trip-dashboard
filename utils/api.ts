@@ -135,7 +135,7 @@ export const getInfoById = async (id: number): Promise<Info> => {
   }
 }
 
-export const addSouvenir = async (data: { name: string; image: string; price: number }): Promise<any> => {
+export const addSouvenir = async (data: { name: string; image: string; location: string }): Promise<any> => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/souvenirs`, {
       method: 'POST',
